@@ -806,7 +806,17 @@ void Channel::Say(ObjectGuid guid, std::string const& what, uint32 lang)
 
     if (player)
     {
-        ChatHandler::BuildChatPacket(data, CHAT_MSG_CHANNEL, Language(lang), player, player, what, 0, _name);
+        if (!player->IsGameMaster()) {
+            if (player->GetTeamId() == TEAM_ALLIANCE) {
+                ChatHandler::BuildChatPacket(data, CHAT_MSG_CHANNEL, Language(lang), player, player, "|TInterface/BattlefieldFrame/Battleground-Alliance:20:20:0:0|t" + what, 0, _name);
+            }
+            else {
+                ChatHandler::BuildChatPacket(data, CHAT_MSG_CHANNEL, Language(lang), player, player, "|TInterface/BattlefieldFrame/Battleground-Horde:20:20:0:0|t" + what, 0, _name);
+
+            }
+        }
+        else
+            ChatHandler::BuildChatPacket(data, CHAT_MSG_CHANNEL, Language(lang), player, player, what, 0, _name);
     }
     else
     {

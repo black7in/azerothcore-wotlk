@@ -592,6 +592,7 @@ enum PlayerExtraFlags
     PLAYER_EXTRA_SPECTATOR_ON       = 0x0080,               // Marks if player is spectactor
     PLAYER_EXTRA_PVP_DEATH          = 0x0100,               // store PvP death status until corpse creating.
     PLAYER_EXTRA_SHOW_DK_PET        = 0x0400,               // Marks if player should see ghoul on login screen
+    PLAYER_EXTRA_HARDCORE_ON        = 0x0800,
 };
 
 // 2^n values
@@ -2532,6 +2533,9 @@ public:
     // arena spectator
     [[nodiscard]] bool IsSpectator() const { return m_ExtraFlags & PLAYER_EXTRA_SPECTATOR_ON; }
     void SetIsSpectator(bool on);
+     // hardcore mode
+    bool IsHardcore() const { return m_ExtraFlags & PLAYER_EXTRA_HARDCORE_ON; }
+    void SetIsHardcore(bool on);
     [[nodiscard]] bool NeedSendSpectatorData() const;
     void SetPendingSpectatorForBG(uint32 bgInstanceId) { m_pendingSpectatorForBG = bgInstanceId; }
     [[nodiscard]] bool HasPendingSpectatorForBG(uint32 bgInstanceId) const { return m_pendingSpectatorForBG == bgInstanceId; }

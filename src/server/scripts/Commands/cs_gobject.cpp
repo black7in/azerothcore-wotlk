@@ -304,6 +304,12 @@ public:
             return false;
         }
 
+        if (object->GetSpawnId() > 0 && object->GetSpawnId() < 2135403) {
+            handler->PSendSysMessage("No se puede eliminar este objeto.");
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
+
         ObjectGuid ownerGuid = object->GetOwnerGUID();
         if (ownerGuid)
         {

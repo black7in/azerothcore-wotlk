@@ -15308,6 +15308,16 @@ void Player::SetIsSpectator(bool on)
     }
 }
 
+void Player::SetIsHardcore(bool on) {
+    if (on) {
+        m_ExtraFlags |= PLAYER_EXTRA_HARDCORE_ON;
+        
+    }
+    else {
+        m_ExtraFlags &= ~PLAYER_EXTRA_HARDCORE_ON;
+    }
+}
+
 bool Player::NeedSendSpectatorData() const
 {
     if (FindMap() && FindMap()->IsBattleArena() && !IsSpectator())

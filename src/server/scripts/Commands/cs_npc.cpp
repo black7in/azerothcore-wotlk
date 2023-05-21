@@ -396,6 +396,11 @@ public:
             handler->SetSentErrorMessage(true);
             return false;
         }
+        if (unit->GetSpawnId() > 0 && unit->GetSpawnId() < 3110331) {
+            handler->SendSysMessage("No puedes eliminar esta criatura");
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
 
         // Delete the creature
         unit->CombatStop();
